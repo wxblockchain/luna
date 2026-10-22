@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>关于我们 · 运营管理系统静态页面</title>
+<style>
+:root{
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei","Helvetica Neue",Arial,sans-serif;
+  --primary:#1890ff;
+  --primary-hover:#40a9ff;
+  --primary-soft:#e6f7ff;
+  --sider:#151a22;
+  --sider-sub:#0f141b;
+  --sider-active:#14262d;
+  --sider-active-ink:#13b59a;
+  --sider-ink:rgba(255,255,255,.72);
+  --sider-foot:#002140;
+  --brand-ink:#c9d3df;
+  --brand-mark:#3d8fd8;
+  --bg:#f0f2f5;
+  --card:#ffffff;
+  --ink:rgba(0,0,0,.85);
+  --ink-2:rgba(0,0,0,.65);
+  --ink-3:rgba(0,0,0,.45);
+  --ink-4:rgba(0,0,0,.25);
+  --border:#d9d9d9;
+  --divider:#f0f0f0;
+  --head:#fafafa;
+  --grp:#f7f9fb;
+  --danger:#ff4d4f;
+  --warn-ink:#d48806;
+  --warn-line:#ffe58f;
+  --warn-soft:#fffbe6;
+  --ok-ink:#389e0d;
+  --ok-line:#b7eb8f;
+  --ok-soft:#f6ffed;
+  --shadow:0 6px 16px rgba(0,0,0,.08),0 3px 6px -4px rgba(0,0,0,.12),0 9px 28px 8px rgba(0,0,0,.05);
+  --focus:#1677ff;--av-bg:#eaf5ec;--av-skin:#f2d3b8;--av-hair:#3b3b3b;--cert-bg:#fffdf6;--cert-ink:#9b2c2c;--cert-line:#e3dccb;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font);font-size:14px;line-height:1.5715;color:var(--ink);background:var(--bg)}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+[hidden]{display:none!important}
+.app{display:flex;min-height:100vh;min-width:1280px}
+.side{width:200px;flex:none;background:var(--sider);position:sticky;top:0;height:100vh;display:flex;flex-direction:column}
+.brand{height:72px;display:flex;align-items:center;gap:8px;padding-left:30px}
+.brand svg{width:36px;height:44px}
+.brand div{font-size:12px;line-height:13px;letter-spacing:.5px;color:var(--brand-ink)}
+.brand b{display:block;margin-top:2px;font-size:14px;font-weight:400;letter-spacing:3px}
+.menu{list-style:none;margin:0;padding:4px 0;flex:1;overflow:auto}
+.mi{display:flex;align-items:center;gap:10px;height:38px;margin:2px 4px;padding:0 20px;border-radius:19px;color:var(--sider-ink);text-decoration:none;cursor:pointer}
+.mi svg{width:14px;height:14px;flex:none}
+.mi:hover{color:#fff}
+.mi.is-on{background:var(--sider-active);color:var(--sider-active-ink)}
+.mi--parent{color:#fff}
+.mi--parent .arr{margin-left:auto}
+.sub{list-style:none;margin:0;padding:0;background:var(--sider-sub)}
+.sub .mi{padding-left:44px}
+.side__foot{height:48px;background:var(--sider-foot);display:flex;align-items:center;justify-content:flex-end;padding:0 20px;color:var(--sider-ink)}
+.body{flex:1;min-width:0;display:flex;flex-direction:column}
+.head{height:54px;background:var(--card);border-bottom:1px solid var(--divider);display:flex;align-items:center;justify-content:flex-end;padding:0 56px}
+.crumb{height:50px;background:var(--card);display:flex;align-items:center;gap:8px;padding:0 22px;font-size:13px;color:var(--ink-3)}
+.crumb a{color:var(--ink-3);text-decoration:none}
+.crumb a:hover{color:var(--primary)}
+.crumb b{font-weight:400;color:var(--ink)}
+.main{flex:1;padding:16px 22px 24px}
+.copy{text-align:center;color:var(--ink-2);font-size:13px;padding:16px 0 20px}
+.card{background:var(--card);border-radius:2px;padding:24px 28px;margin-bottom:16px}
+.ph{display:flex;align-items:center;gap:12px}
+.ph h1{margin:0;font-size:16px;font-weight:500}
+.ph .sp{flex:1}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:0 8px;border:1px solid;border-radius:2px;font-size:13px;line-height:22px;white-space:nowrap}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge--unpub{color:var(--warn-ink);border-color:var(--warn-line);background:var(--warn-soft)}
+.badge--pub{color:var(--ok-ink);border-color:var(--ok-line);background:var(--ok-soft)}
+.badge--off{color:var(--ink-2);border-color:var(--border);background:var(--divider)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:4px 15px;border:1px solid var(--border);border-radius:2px;background:var(--card);color:var(--ink);font-size:14px;text-decoration:none;white-space:nowrap;cursor:pointer;transition:color .2s,border-color .2s,background-color .2s}
+.btn:hover{color:var(--primary-hover);border-color:var(--primary-hover)}
+.btn--pri{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn--pri:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:#fff}
+.lnk{background:none;border:0;padding:0;color:var(--primary);text-decoration:none;cursor:pointer;white-space:nowrap}
+.lnk:hover{color:var(--primary-hover)}
+.form{max-width:1160px;margin:0 auto;padding:8px 0}
+.fi{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0 12px;margin-bottom:24px}
+.fl{text-align:right;line-height:32px}
+.fl::after{content:"："}
+.req{color:var(--danger);margin-right:4px;font-family:SimSun,sans-serif}
+.inp,.ta{width:100%;border:1px solid var(--border);border-radius:2px;background:#fff;padding:4px 11px;line-height:22px}
+.inp{height:32px}
+.ta{min-height:96px;padding:6px 11px;resize:vertical}
+.inp:hover,.ta:hover{border-color:var(--primary-hover)}
+.inp:focus,.ta:focus{outline:none;border-color:var(--primary-hover);box-shadow:0 0 0 2px rgba(24,144,255,.2)}
+.meta{display:flex;justify-content:space-between;margin-top:4px;font-size:13px;color:var(--ink-3)}
+.radios{display:flex;gap:24px;height:32px;align-items:center}
+.radios label{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
+.radios input{width:16px;height:16px;margin:0;accent-color:var(--primary)}
+.upl{width:104px;height:104px;border:1px dashed var(--border);border-radius:2px;background:var(--head);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-2);cursor:pointer}
+.upl:hover{border-color:var(--primary)}
+.thumb{display:flex;align-items:flex-end;gap:16px}
+.thumb__img{width:104px;height:104px;border:1px solid var(--border);border-radius:2px;padding:8px;background:#fff}
+.thumb__img img{width:100%;height:100%;object-fit:contain;display:block}
+.file{display:flex;align-items:center;gap:12px;max-width:560px;border:1px solid var(--border);border-radius:2px;padding:10px 12px;background:#fff}
+.file svg{width:28px;height:34px;flex:none}
+.file__n{flex:1;min-width:0}
+.file__n b{display:block;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file__n span{font-size:12px;color:var(--ink-3)}
+.file .lnk{margin-left:12px}
+.ft{display:flex;gap:8px;margin-left:162px}
+.warn{margin:-8px 0 24px 162px;padding:8px 12px;background:var(--warn-soft);border:1px solid var(--warn-line);border-radius:2px;color:var(--warn-ink);font-size:13px}
+.filters{display:grid;grid-template-columns:minmax(220px,1.4fr) 1fr 1fr;gap:16px 32px;align-items:center}
+.fg{display:flex;align-items:center;gap:8px}
+.fg label{white-space:nowrap}
+.sel{width:100%;height:32px;border:1px solid var(--border);border-radius:2px;background:#fff;padding:0 8px}
+.filters__acts{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px}
+.toolbar{margin-bottom:16px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th{position:relative;text-align:left;font-weight:500;background:var(--head);padding:14px 16px;border-bottom:1px solid var(--divider)}
+th+th::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:1.6em;background:var(--divider)}
+td{padding:14px 16px;border-bottom:1px solid var(--divider);vertical-align:middle;word-break:break-word}
+tbody tr:not(.grp):hover td{background:var(--head)}
+tr.grp td{background:var(--grp);padding:9px 16px;font-size:13px;font-weight:500;color:var(--ink-2)}
+.av{width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;border:1px solid var(--divider)}
+.nil{color:var(--ink-4)}
+.ellip{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ops{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+details.mv{position:relative}
+details.mv summary{list-style:none;color:var(--primary);cursor:pointer}
+details.mv summary::-webkit-details-marker{display:none}
+details.mv div{position:absolute;top:100%;left:0;z-index:5;margin-top:4px;background:#fff;box-shadow:var(--shadow);border-radius:2px;padding:4px 0;min-width:88px}
+details.mv div span{display:block;padding:6px 16px;cursor:pointer}
+details.mv div span:hover{background:var(--head)}
+
+/* 静态排版：页面自上而下排列 */
+body{background:#e9ecef}
+.intro{max-width:1200px;margin:0 auto;padding:32px 24px 0;font-family:-apple-system,"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;color:rgba(0,0,0,.85)}
+.intro h1{margin:0 0 12px;font-size:20px;font-weight:600}
+.intro ol{margin:0;padding-left:20px;columns:2;font-size:14px;line-height:26px;color:rgba(0,0,0,.65)}
+.frame{margin:40px 0 0}
+.frame:last-child{margin-bottom:48px}
+.frame__title{max-width:1200px;margin:0 auto;padding:0 24px 10px;font-family:-apple-system,"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;font-size:15px;font-weight:600;color:rgba(0,0,0,.85)}
+.frame__title span{display:inline-block;min-width:72px;margin-right:8px;padding:1px 8px;border-radius:2px;background:#2b2f36;color:#fff;font-size:12px;font-weight:400;text-align:center}
+.frame__body{border-top:1px solid #d0d5da;border-bottom:1px solid #d0d5da;overflow-x:auto}
+
+.av{position:relative;overflow:hidden;border-radius:50%;background:var(--av-bg)}
+.av::before{content:"";position:absolute;left:31%;top:20%;width:38%;height:38%;border-radius:50%;background:var(--av-skin);box-shadow:inset 0 10px 0 var(--av-hair)}
+.av::after{content:"";position:absolute;left:15%;right:15%;bottom:-20%;height:48%;border-radius:50% 50% 0 0;background:var(--av-shirt)}
+.av--0{--av-shirt:#68c18c}.av--1{--av-shirt:#5b8fb9}.av--2{--av-shirt:#8aa66b}.av--3{--av-shirt:#c9a46a}.av--4{--av-shirt:#7b9e89}.av--5{--av-shirt:#a3b6c9}
+
+.cert-img{position:relative;aspect-ratio:600/420;background:var(--cert-bg);border:6px double var(--cert-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--cert-ink);font-family:serif;letter-spacing:10px;font-size:26px}
+.cert-img i{display:block;height:7px;width:60%;background:var(--cert-line)}
+.cert-img i+i{width:48%}
+
+.app{min-height:0;background:var(--bg)}
+.side{position:static;height:auto;min-height:600px}
+.mi{cursor:default}
+.btn,.lnk{cursor:default}
+.av{width:40px;height:40px;border:1px solid var(--divider)}
+.thumb__img .av{width:86px;height:86px;border:0}
+.thumb__img .cert-img{border-width:3px;font-size:10px;letter-spacing:3px;gap:4px}
+.thumb__img .cert-img i{height:3px}
+.ft{margin-top:0}
+.rd{width:16px;height:16px;border:1px solid var(--border);border-radius:50%;background:#fff;flex:none}
+.rd.is-on{border-color:var(--primary);background:var(--primary);box-shadow:inset 0 0 0 4px #fff}
+.radios label{cursor:default}
+</style>
+</head>
+<body>
+<header class="intro"><h1>关于我们 · 运营管理系统静态页面</h1><ol><li>后台 · 组织信息</li><li>后台 · 组织章程</li><li>后台 · 管理制度列表</li><li>后台 · 新增制度</li><li>后台 · 编辑制度</li><li>后台 · 人员情况列表</li><li>后台 · 新增人员 · 理事会 / 监事</li><li>后台 · 新增人员 · 工作人员</li><li>后台 · 新增人员 · 志愿者</li><li>后台 · 编辑人员 · 理事会</li><li>后台 · 编辑人员 · 改为工作人员</li><li>后台 · 编辑人员 · 改为志愿者</li></ol></header><section class="frame" aria-label="组织信息"><h2 class="frame__title"><span>01 · 后台</span>组织信息</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi is-on" aria-current="page">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><b>组织信息</b></div><main class="main">
+  <div class="card"><div class="ph"><h1>组织信息</h1><span class="badge badge--pub">已发布</span><span class="sp"></span><span class="btn">下线</span></div></div>
+  <div class="card"><form class="form">
+    <div class="fi"><label class="fl">简介</label><div><textarea class="ta" rows="5">民生通惠乡村振兴服务中心是一家扎根乡村的社会服务机构，围绕生态保护、自然教育与乡村发展开展公益服务。
+服务中心与各地合作伙伴协作，推动在地保护与社区参与，让更多人了解并参与到自然保护中来。</textarea><div class="meta"><span>不超过 300 字</span><span>93 / 300</span></div></div></div>
+    <div class="fi"><label class="fl">愿景</label><div><textarea class="ta" rows="2">让乡村与自然共同繁荣，人与自然和谐共生。</textarea><div class="meta"><span>不超过 300 字</span><span>20 / 300</span></div></div></div>
+    <div class="fi"><label class="fl">宗旨</label><div><textarea class="ta" rows="2">以专业的公益服务连接公众、社区与自然，推动生态保护与乡村振兴协同发展。</textarea><div class="meta"><span>不超过 300 字</span><span>35 / 300</span></div></div></div>
+    <div class="fi"><label class="fl">组织资格说明</label><div><textarea class="ta" rows="3">本机构依法登记成立，登记管理机关：××区民政局；统一社会信用代码：××××××××××××××××××。
+下图为登记证书。</textarea><div class="meta"><span>不超过 300 字</span><span>60 / 300</span></div></div></div>
+    <div class="fi"><div class="fl">证书图片</div><div><div class="thumb"><div class="thumb__img"><div class="cert-img" role="img" aria-label="登记证书">登记证书<i></i><i></i><i></i></div></div><span><span class="lnk">替换</span>　<span class="lnk">移除</span></span></div><div class="meta"><span>支持 JPG、PNG，不超过 1 MB，仅 1 张</span></div></div></div>
+    <div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div>
+  </form></div>
+</main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="组织章程"><h2 class="frame__title"><span>02 · 后台</span>组织章程</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi is-on" aria-current="page">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><b>组织章程</b></div><main class="main">
+  <div class="card"><div class="ph"><h1>组织章程</h1><span class="badge badge--pub">已发布</span><span class="sp"></span><span class="btn">下线</span></div></div>
+  <div class="card"><form class="form">
+    <div class="fi"><label class="fl"><span class="req">*</span>章程标题</label><div><input class="inp" value="民生通惠乡村振兴服务中心章程"><div class="meta"><span>不超过 30 字</span><span>14 / 30</span></div></div></div>
+    <div class="fi"><div class="fl"><span class="req">*</span>章程文件</div><div><div class="file"><svg viewBox="0 0 28 34" aria-hidden="true"><path d="M3 1h15l9 9v21a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z" fill="#fff1f0" stroke="#ff4d4f"/><text x="14" y="25" font-size="8" font-weight="700" fill="#ff4d4f" text-anchor="middle" font-family="Arial">PDF</text></svg><div class="file__n"><b>民生通惠乡村振兴服务中心章程.pdf</b><span>3.1 MB</span></div><span class="lnk">预览</span><span class="lnk">替换</span></div><div class="meta"><span>仅支持 PDF，不超过 20 MB</span></div></div></div>
+    <div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div>
+  </form></div>
+</main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="管理制度列表"><h2 class="frame__title"><span>03 · 后台</span>管理制度列表</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi is-on" aria-current="page">管理制度</a></li>
+          <li><a class="mi">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><b>管理制度</b></div><main class="main">
+  <div class="card">
+    <div class="toolbar"><span class="btn btn--pri">新 增</span></div>
+    <table>
+      <colgroup><col><col style="width:30%"><col style="width:120px"><col style="width:240px"></colgroup>
+      <thead><tr><th>制度标题</th><th>制度文件</th><th>发布状态</th><th>操作</th></tr></thead>
+      <tbody><tr><td>项目管理制度</td><td><span class="ellip">项目管理制度.pdf <span class="nil">· 2.6 MB</span></span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td>财务管理制度</td><td><span class="ellip">财务管理制度.pdf <span class="nil">· 1.8 MB</span></span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td>信息公开管理制度</td><td><span class="ellip">信息公开管理制度.pdf <span class="nil">· 1.2 MB</span></span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td>志愿者管理办法</td><td><span class="ellip">志愿者管理办法.pdf <span class="nil">· 0.9 MB</span></span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td>采购管理制度</td><td><span class="ellip">采购管理制度.pdf <span class="nil">· 1.5 MB</span></span></td><td><span class="badge badge--unpub">未发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">发布</span><span class="lnk">删除</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td>档案管理制度</td><td><span class="ellip">档案管理制度.pdf <span class="nil">· 0.7 MB</span></span></td><td><span class="badge badge--off">已下线</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">重新发布</span><span class="lnk">删除</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr></tbody>
+    </table>
+  </div>
+</main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="新增制度"><h2 class="frame__title"><span>04 · 后台</span>新增制度</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi is-on" aria-current="page">管理制度</a></li>
+          <li><a class="mi">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>管理制度</a><span>&gt;</span><b>新增制度</b></div><main class="main">
+  <div class="card"><div class="ph"><h1>新增制度</h1></div></div>
+  <div class="card"><form class="form">
+    <div class="fi"><label class="fl"><span class="req">*</span>制度标题</label><div><input class="inp" placeholder="请输入制度标题"><div class="meta"><span>不超过 30 字</span><span>0 / 30</span></div></div></div>
+    <div class="fi"><div class="fl"><span class="req">*</span>制度文件</div><div><span class="btn">+ 上传 PDF</span><div class="meta"><span>仅支持 PDF，不超过 20 MB</span></div></div></div>
+    <div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div>
+  </form></div>
+</main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="编辑制度"><h2 class="frame__title"><span>05 · 后台</span>编辑制度</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi is-on" aria-current="page">管理制度</a></li>
+          <li><a class="mi">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>管理制度</a><span>&gt;</span><b>编辑制度</b></div><main class="main">
+  <div class="card"><div class="ph"><h1>编辑制度</h1><span class="badge badge--pub">已发布</span></div></div>
+  <div class="card"><form class="form">
+    <div class="fi"><label class="fl"><span class="req">*</span>制度标题</label><div><input class="inp" value="项目管理制度"><div class="meta"><span>不超过 30 字</span><span>6 / 30</span></div></div></div>
+    <div class="fi"><div class="fl"><span class="req">*</span>制度文件</div><div><div class="file"><svg viewBox="0 0 28 34" aria-hidden="true"><path d="M3 1h15l9 9v21a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2z" fill="#fff1f0" stroke="#ff4d4f"/><text x="14" y="25" font-size="8" font-weight="700" fill="#ff4d4f" text-anchor="middle" font-family="Arial">PDF</text></svg><div class="file__n"><b>项目管理制度.pdf</b><span>2.6 MB</span></div><span class="lnk">预览</span><span class="lnk">替换</span></div><div class="meta"><span>仅支持 PDF，不超过 20 MB</span></div></div></div>
+    <div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div>
+  </form></div>
+</main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="人员情况列表"><h2 class="frame__title"><span>06 · 后台</span>人员情况列表</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><b>人员情况</b></div><main class="main">
+  <div class="card"><div class="filters">
+    <input class="inp" placeholder="请输入姓名搜索" aria-label="姓名">
+    <div class="fg"><label>人员分类：</label><select class="sel"><option>全部</option><option>理事会</option><option>监事</option><option>工作人员</option><option>志愿者</option></select></div>
+    <div class="fg"><label>发布状态：</label><select class="sel"><option>全部</option><option>未发布</option><option>已发布</option><option>已下线</option></select></div>
+    <div class="filters__acts"><span class="btn btn--pri">查 询</span><span class="btn">重 置</span></div>
+  </div></div>
+  <div class="card">
+    <div class="toolbar"><span class="btn btn--pri">新 增</span></div>
+    <table>
+      <colgroup><col style="width:76px"><col style="width:12%"><col style="width:10%"><col style="width:14%"><col><col style="width:108px"><col style="width:220px"></colgroup>
+      <thead><tr><th>照片</th><th>姓名</th><th>人员分类</th><th>职务</th><th>教育背景</th><th>发布状态</th><th>操作</th></tr></thead>
+      <tbody><tr class="grp"><td colspan="7">理事会（4 人）</td></tr><tr><td><div class=" av av--0" role="img" aria-label="张三"></div></td><td><span class="lnk">张三</span></td><td>理事会</td><td>理事长</td><td><span class="ellip">××大学 生态学 博士 长期从事生态保护与自然教育相关工作。</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--1" role="img" aria-label="李四"></div></td><td><span class="lnk">李四</span></td><td>理事会</td><td>副理事长</td><td><span class="ellip">××大学 公共管理 硕士</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--2" role="img" aria-label="王五"></div></td><td><span class="lnk">王五</span></td><td>理事会</td><td>理事</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--3" role="img" aria-label="钱七"></div></td><td><span class="lnk">钱七</span></td><td>理事会</td><td>理事</td><td><span class="ellip">××大学 环境科学 学士</span></td><td><span class="badge badge--unpub">未发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">发布</span><span class="lnk">删除</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr class="grp"><td colspan="7">监事（2 人）</td></tr><tr><td><div class=" av av--4" role="img" aria-label="赵六"></div></td><td><span class="lnk">赵六</span></td><td>监事</td><td>监事</td><td><span class="ellip">××大学 会计学 硕士</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--5" role="img" aria-label="孙八"></div></td><td><span class="lnk">孙八</span></td><td>监事</td><td>监事</td><td><span class="nil">—</span></td><td><span class="badge badge--off">已下线</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">重新发布</span><span class="lnk">删除</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr class="grp"><td colspan="7">工作人员（10 人）</td></tr><tr><td><div class=" av av--0" role="img" aria-label="周九"></div></td><td><span class="lnk">周九</span></td><td>工作人员</td><td>秘书长</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--1" role="img" aria-label="吴十"></div></td><td><span class="lnk">吴十</span></td><td>工作人员</td><td>副秘书长</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--2" role="img" aria-label="郑一"></div></td><td><span class="lnk">郑一</span></td><td>工作人员</td><td>战略部部长</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--3" role="img" aria-label="冯二"></div></td><td><span class="lnk">冯二</span></td><td>工作人员</td><td>科学部部长</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--4" role="img" aria-label="陈三"></div></td><td><span class="lnk">陈三</span></td><td>工作人员</td><td>运营经理</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--5" role="img" aria-label="褚四"></div></td><td><span class="lnk">褚四</span></td><td>工作人员</td><td>自然体验经理</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--0" role="img" aria-label="卫五"></div></td><td><span class="lnk">卫五</span></td><td>工作人员</td><td>花园主管</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--1" role="img" aria-label="蒋六"></div></td><td><span class="lnk">蒋六</span></td><td>工作人员</td><td>设计运营经理</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--2" role="img" aria-label="沈七"></div></td><td><span class="lnk">沈七</span></td><td>工作人员</td><td>秘书处专员</td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><div class=" av av--3" role="img" aria-label="韩八"></div></td><td><span class="lnk">韩八</span></td><td>工作人员</td><td>森林巡护队队长</td><td><span class="nil">—</span></td><td><span class="badge badge--unpub">未发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">发布</span><span class="lnk">删除</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr class="grp"><td colspan="7">志愿者（15 人）</td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">杨一</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">朱二</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">秦三</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">尤四</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">许五</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">何六</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">吕七</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">施八</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">孔九</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">曹十</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">严一</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">华二</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">金三</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">魏四</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--pub">已发布</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">下线</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr><tr><td><span class="nil">—</span></td><td><span class="lnk">陶五</span></td><td>志愿者</td><td><span class="nil">—</span></td><td><span class="nil">—</span></td><td><span class="badge badge--off">已下线</span></td><td><div class="ops"><span class="lnk">编辑</span><span class="lnk">重新发布</span><span class="lnk">删除</span><details class="mv"><summary>移动</summary><div><span>向前1</span><span>向前10</span><span>向后1</span><span>向后10</span></div></details></div></td></tr></tbody>
+    </table>
+  </div>
+</main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="新增人员 · 理事会 / 监事"><h2 class="frame__title"><span>07 · 后台</span>新增人员 · 理事会 / 监事</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>人员情况</a><span>&gt;</span><b>新增人员</b></div><main class="main"><div class="card"><div class="ph"><h1>新增人员</h1></div></div><div class="card"><form class="form"><div class="fi"><div class="fl"><span class="req">*</span>人员分类</div><div><div class="radios"><label><span class="rd is-on"></span>理事会</label><label><span class="rd"></span>监事</label><label><span class="rd"></span>工作人员</label><label><span class="rd"></span>志愿者</label></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>照片</div><div><span class="upl"><span>+</span><span>上传</span></span><div class="meta"><span>必须上传 1 张，支持 JPG、PNG，不超过 1 MB</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>姓名</div><div><input class="inp" value="" placeholder="请输入姓名"><div class="meta"><span>不超过 30 字</span><span>0 / 30</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>职务</div><div><input class="inp" value="" placeholder="请输入职务"><div class="meta"><span>不超过 30 字</span><span>0 / 30</span></div></div></div><div class="fi"><div class="fl">教育背景</div><div><textarea class="ta" rows="4" placeholder="选填"></textarea><div class="meta"><span>不超过 300 字</span><span>0 / 300</span></div></div></div><div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div></form></div></main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="新增人员 · 工作人员"><h2 class="frame__title"><span>08 · 后台</span>新增人员 · 工作人员</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>人员情况</a><span>&gt;</span><b>新增人员</b></div><main class="main"><div class="card"><div class="ph"><h1>新增人员</h1></div></div><div class="card"><form class="form"><div class="fi"><div class="fl"><span class="req">*</span>人员分类</div><div><div class="radios"><label><span class="rd"></span>理事会</label><label><span class="rd"></span>监事</label><label><span class="rd is-on"></span>工作人员</label><label><span class="rd"></span>志愿者</label></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>照片</div><div><span class="upl"><span>+</span><span>上传</span></span><div class="meta"><span>必须上传 1 张，支持 JPG、PNG，不超过 1 MB</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>姓名</div><div><input class="inp" value="" placeholder="请输入姓名"><div class="meta"><span>不超过 30 字</span><span>0 / 30</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>职务</div><div><input class="inp" value="" placeholder="请输入职务"><div class="meta"><span>不超过 30 字</span><span>0 / 30</span></div></div></div><div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div></form></div></main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="新增人员 · 志愿者"><h2 class="frame__title"><span>09 · 后台</span>新增人员 · 志愿者</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>人员情况</a><span>&gt;</span><b>新增人员</b></div><main class="main"><div class="card"><div class="ph"><h1>新增人员</h1></div></div><div class="card"><form class="form"><div class="fi"><div class="fl"><span class="req">*</span>人员分类</div><div><div class="radios"><label><span class="rd"></span>理事会</label><label><span class="rd"></span>监事</label><label><span class="rd"></span>工作人员</label><label><span class="rd is-on"></span>志愿者</label></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>姓名</div><div><input class="inp" value="" placeholder="请输入姓名"><div class="meta"><span>不超过 30 字</span><span>0 / 30</span></div></div></div><div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div></form></div></main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="编辑人员 · 理事会"><h2 class="frame__title"><span>10 · 后台</span>编辑人员 · 理事会</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>人员情况</a><span>&gt;</span><b>编辑人员</b></div><main class="main"><div class="card"><div class="ph"><h1>编辑人员</h1><span class="badge badge--pub">已发布</span></div></div><div class="card"><form class="form"><div class="fi"><div class="fl"><span class="req">*</span>人员分类</div><div><div class="radios"><label><span class="rd is-on"></span>理事会</label><label><span class="rd"></span>监事</label><label><span class="rd"></span>工作人员</label><label><span class="rd"></span>志愿者</label></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>照片</div><div><div class="thumb"><div class="thumb__img"><div class=" av av--1" role="img" aria-label="照片"></div></div><span class="lnk">替换</span></div><div class="meta"><span>必须上传 1 张，支持 JPG、PNG，不超过 1 MB</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>姓名</div><div><input class="inp" value="李四" placeholder="请输入姓名"><div class="meta"><span>不超过 30 字</span><span>2 / 30</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>职务</div><div><input class="inp" value="副理事长" placeholder="请输入职务"><div class="meta"><span>不超过 30 字</span><span>4 / 30</span></div></div></div><div class="fi"><div class="fl">教育背景</div><div><textarea class="ta" rows="4" placeholder="选填">××大学 公共管理 硕士</textarea><div class="meta"><span>不超过 300 字</span><span>12 / 300</span></div></div></div><div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div></form></div></main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="编辑人员 · 改为工作人员"><h2 class="frame__title"><span>11 · 后台</span>编辑人员 · 改为工作人员</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>人员情况</a><span>&gt;</span><b>编辑人员</b></div><main class="main"><div class="card"><div class="ph"><h1>编辑人员</h1><span class="badge badge--pub">已发布</span></div></div><div class="card"><form class="form"><div class="fi"><div class="fl"><span class="req">*</span>人员分类</div><div><div class="radios"><label><span class="rd"></span>理事会</label><label><span class="rd"></span>监事</label><label><span class="rd is-on"></span>工作人员</label><label><span class="rd"></span>志愿者</label></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>照片</div><div><div class="thumb"><div class="thumb__img"><div class=" av av--1" role="img" aria-label="照片"></div></div><span class="lnk">替换</span></div><div class="meta"><span>必须上传 1 张，支持 JPG、PNG，不超过 1 MB</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>姓名</div><div><input class="inp" value="李四" placeholder="请输入姓名"><div class="meta"><span>不超过 30 字</span><span>2 / 30</span></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>职务</div><div><input class="inp" value="副理事长" placeholder="请输入职务"><div class="meta"><span>不超过 30 字</span><span>4 / 30</span></div></div></div><div class="warn">改为该分类后，保存时将清除：教育背景</div><div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div></form></div></main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section><section class="frame" aria-label="编辑人员 · 改为志愿者"><h2 class="frame__title"><span>12 · 后台</span>编辑人员 · 改为志愿者</h2><div class="frame__body"><div class="app"><aside class="side" aria-label="菜单">
+    <div class="brand"><svg viewBox="0 0 36 44" fill="none" stroke="var(--brand-mark)" stroke-width="3" aria-hidden="true"><path d="M3 6h30M18 6v8M8 14h20l-2 26H10z"/><path d="M14 22v10h8V22"/></svg><div>WANXIANG<br>BLOCKCHAIN<b>万向区块链</b></div></div>
+    <ul class="menu">
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 13V6l5-4 5 4v7z"/></svg>项目成果列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 4h4v4H2zM10 2h4v4h-4zM10 10h4v4h-4zM6 6l4-2M6 6l4 6"/></svg>新闻中心列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 2h10v12H3zM3 6h10M3 10h10"/></svg>生物库列表</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM2.5 14c.6-3 2.8-4.5 5.5-4.5s4.9 1.5 5.5 4.5"/></svg>用户管理</a></li>
+      <li><a class="mi"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2.5 2.5h11v11h-11zM5 8l2 2 4-4"/></svg>打卡管理</a></li>
+      <li><a class="mi mi--parent"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM8 7v4.5M8 4.6v.1"/></svg>关于我们<svg class="arr" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 6.5 5 3.5 8 6.5"/></svg></a>
+        <ul class="sub">
+          <li><a class="mi">组织信息</a></li>
+          <li><a class="mi">组织章程</a></li>
+          <li><a class="mi">管理制度</a></li>
+          <li><a class="mi is-on" aria-current="page">人员情况</a></li>
+        </ul></li>
+    </ul>
+    <div class="side__foot"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3h12M6 8h8M2 13h12M2 6.5 4 8l-2 1.5"/></svg></div>
+  </aside><div class="body"><header class="head">admin ▾</header><div class="crumb"><a>关于我们</a><span>&gt;</span><a>人员情况</a><span>&gt;</span><b>编辑人员</b></div><main class="main"><div class="card"><div class="ph"><h1>编辑人员</h1><span class="badge badge--pub">已发布</span></div></div><div class="card"><form class="form"><div class="fi"><div class="fl"><span class="req">*</span>人员分类</div><div><div class="radios"><label><span class="rd"></span>理事会</label><label><span class="rd"></span>监事</label><label><span class="rd"></span>工作人员</label><label><span class="rd is-on"></span>志愿者</label></div></div></div><div class="fi"><div class="fl"><span class="req">*</span>姓名</div><div><input class="inp" value="李四" placeholder="请输入姓名"><div class="meta"><span>不超过 30 字</span><span>2 / 30</span></div></div></div><div class="warn">改为该分类后，保存时将清除：照片、职务、教育背景</div><div class="ft"><span class="btn btn--pri">保存</span><span class="btn">取消</span></div></form></div></main><div class="copy">Copyright ©2023 万向区块链</div></div></div></div></section>
+</body>
+</html>

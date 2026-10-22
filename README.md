@@ -6,8 +6,8 @@
 
 | 模块 | PRD | 原型 |
 | --- | --- | --- |
-| 信息公开 | [prd/info-disclosure/](prd/info-disclosure/) | `prototype/info-disclosure/` |
-| 关于我们 | [prd/about-us/](prd/about-us/) | `prototype/about-us/` |
+| 信息公开 | [prd/info-disclosure/](prd/info-disclosure/) | [prototype/info-disclosure/](prototype/info-disclosure/) |
+| 关于我们 | [prd/about-us/](prd/about-us/) | [prototype/about-us/](prototype/about-us/) |
 
 ## PRD 分册
 
@@ -17,6 +17,16 @@
 - `02-flows`：流程图与状态机（Mermaid）
 - `03-notifications`：消息通知，仅当模块自己发送消息时才有；没有这一册的模块会在 01 开头说明
 - `04-acceptance`：验收标准
+
+## 原型
+
+原型是单文件静态 HTML，不依赖脚本和外部资源，下载后双击即可在浏览器打开。页面从上到下依次排列，每页上方标有编号和名称，文件顶部有页面清单；按钮和链接只展示样式，不会跳转。页面中的人员、文字、图片和文件均为示例数据。
+
+| 模块 | 文件 | 内容 |
+| --- | --- | --- |
+| 信息公开 | [luna-info-disclosure.html](prototype/info-disclosure/luna-info-disclosure.html) | 官网 9 页 + 运营管理系统 18 页 |
+| 关于我们 | [luna-about-us-site.html](prototype/about-us/luna-about-us-site.html) | 官网 4 页 |
+| 关于我们 | [luna-about-us-admin.html](prototype/about-us/luna-about-us-admin.html) | 运营管理系统 12 页 |
 
 ## 维护约定
 
