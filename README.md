@@ -20,13 +20,13 @@
 
 ## 原型
 
-原型是单文件静态 HTML，不依赖脚本和外部资源，下载后双击即可在浏览器打开。页面从上到下依次排列，每页上方标有编号和名称，文件顶部有页面清单；按钮和链接只展示样式，不会跳转。页面中的人员、文字、图片和文件均为示例数据。
+原型是可点击切换页面的单文件 HTML，不依赖外部资源。克隆或下载后用浏览器打开即可（GitHub 网页上只能看到源码，不能直接预览）。页面中的人员、文字、图片和文件均为示例数据，按钮不会真正保存。
 
-| 模块 | 文件 | 内容 |
-| --- | --- | --- |
-| 信息公开 | [luna-info-disclosure.html](prototype/info-disclosure/luna-info-disclosure.html) | 官网 9 页 + 运营管理系统 18 页 |
-| 关于我们 | [luna-about-us-site.html](prototype/about-us/luna-about-us-site.html) | 官网 4 页 |
-| 关于我们 | [luna-about-us-admin.html](prototype/about-us/luna-about-us-admin.html) | 运营管理系统 12 页 |
+| 模块 | 文件 | 内容 | 操作方式 |
+| --- | --- | --- | --- |
+| 信息公开 | [luna-info-disclosure.html](prototype/info-disclosure/luna-info-disclosure.html) | 官网 9 页 + 运营管理系统 18 页 | 页签、面包屑、新增、编辑、取消等可点击跳转；右下角“演示 · 页面与状态”默认收起，展开后可直达任意页面或状态 |
+| 关于我们 | [luna-about-us-site.html](prototype/about-us/luna-about-us-site.html) | 官网：组织信息、组织章程、管理制度、人员情况 | 页签切换；支持手机宽度；章程和制度 PDF 可预览、下载（示例文件） |
+| 关于我们 | [luna-about-us-admin.html](prototype/about-us/luna-about-us-admin.html) | 运营管理系统：组织信息、组织章程、管理制度、人员情况 | 菜单与面包屑切换；新增、编辑人员时，选择分类后显示对应字段，修改分类会提示将清除的信息 |
 
 ## 维护约定
 
