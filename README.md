@@ -24,7 +24,7 @@
 
 | 模块 | 文件 | 内容 | 操作方式 |
 | --- | --- | --- | --- |
-| 信息公开 | [luna-info-disclosure.html](prototype/info-disclosure/luna-info-disclosure.html) | 官网 9 页 + 运营管理系统 18 页 | 页签、面包屑、新增、编辑、取消等可点击跳转；右下角“演示 · 页面与状态”默认收起，展开后可直达任意页面或状态 |
+| 信息公开 | [luna-info-disclosure.html](prototype/info-disclosure/luna-info-disclosure.html) | 官网 9 页 + 运营管理系统 18 页 | 页签、面包屑、新增、编辑、删除（含确认弹窗）、取消可点击切换；新增年度报告时点“发布”可查看校验失败；右下角“演示 · 页面与状态”默认收起，展开后可直达任意页面或状态。不依赖脚本和 `#` 锚点，禁止脚本的预览窗口里也能点击 |
 | 关于我们 | [luna-about-us-site.html](prototype/about-us/luna-about-us-site.html) | 官网：组织信息、组织章程、管理制度、人员情况 | 一级导航下拉和页签切换；章程和制度可打开在线预览弹窗；支持手机宽度。不依赖脚本和 `#` 锚点，禁止脚本的预览窗口里也能点击 |
 | 关于我们 | [luna-about-us-admin.html](prototype/about-us/luna-about-us-admin.html) | 运营管理系统：组织信息、组织章程、管理制度、人员情况 | 页签、面包屑、新增、编辑、取消可切换；发布、下线、删除（含确认弹窗）、必填与 30 字校验可点击查看；新增、编辑人员时按分类显示字段，修改分类会提示将清除的信息。不依赖脚本和 `#` 锚点 |
 
