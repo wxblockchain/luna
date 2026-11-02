@@ -11,6 +11,8 @@
 
 关于我们的视觉规格与人员照片展示/建议上传尺寸见 [design/about-us/UI.md](design/about-us/UI.md)。
 
+信息公开的视觉规格、项目照片与关联方 logo 展示/建议上传尺寸见 [design/info-disclosure/UI.md](design/info-disclosure/UI.md)。
+
 ## PRD 分册
 
 每个模块的 PRD 按固定册号分册，放在同一目录下，册与册之间用相对链接互相引用：
