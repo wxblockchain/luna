@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>luna-江河荟 · 页面原型入口</title>
+<style>
+/* 仅入口页使用（评审工具），不进入模块附件 */
+:root {
+  --entry-bg: #f0f2f5;
+  --entry-surface: #ffffff;
+  --entry-text: rgba(0, 0, 0, .85);
+  --entry-text-2: rgba(0, 0, 0, .45);
+  --entry-line: #f0f0f0;
+  --entry-primary: #1890ff;
+  --entry-primary-soft: #e6f7ff;
+  --entry-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--entry-bg); color: var(--entry-text); font-family: var(--entry-font); font-size: 14px; line-height: 1.5715; }
+.entry { max-width: 880px; margin: 0 auto; padding: 56px 24px; }
+.entry h1 { margin: 0 0 8px; font-size: 24px; font-weight: 600; }
+.entry > p { margin: 0 0 24px; color: var(--entry-text-2); }
+#ends { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.entry-end { background: var(--entry-surface); border-radius: 4px; }
+.entry-end h2 { display: flex; align-items: baseline; gap: 8px; margin: 0; padding: 16px 24px; border-bottom: 1px solid var(--entry-line); font-size: 16px; font-weight: 600; }
+.entry-end h2 small { font-size: 13px; font-weight: 400; color: var(--entry-text-2); }
+.entry-mods { display: flex; flex-wrap: wrap; gap: 12px; padding: 20px 24px 24px; }
+.entry-mods a { padding: 5px 16px; border: 1px solid var(--entry-primary); border-radius: 2px; color: var(--entry-primary); text-decoration: none; }
+.entry-mods a:hover { background: var(--entry-primary-soft); }
+.entry-mods a:focus-visible { outline: 2px solid var(--entry-primary); outline-offset: 2px; }
+.entry .foot { margin-top: 24px; font-size: 12px; }
+</style>
+</head>
+<body>
+<main class="entry">
+  <h1>luna-江河荟 · 页面原型</h1>
+  <p>选择端和模块进入。进入后用官网导航或后台侧栏在模块间切换；右下角“演示工具”可切换面客端 / 企业端、模块，并直达各页面与状态。</p>
+  <div id="ends"></div>
+  <p class="foot">规则、校验与异常分支以 PRD 为准；页面中的数据均为演示数据。需要完整拉取 prototype/ 目录，双击本文件即可打开，无需启动服务。</p>
+</main>
+<script src="_shared/navigation.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () { LUNA.renderEntry(document.getElementById('ends')); });
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信息公开 · 面客端（官网） · 原型（演示数据）</title>
+<style>
+/* 信息公开 · 面客端 · 可点击原型（演示数据）
+   官网口径：www.ecoznc.com 实测（2026-10-19）；后台口径：运营管理系统截图（与 Ant Design 4 默认值一致） */
+:root {
+  --site-nav-bg: #222728;
+  --site-footer-bg: #222728;
+  --site-line-dark: rgba(255, 255, 255, .16);
+  --site-on-dark: #ffffff;
+  --site-on-dark-2: rgba(255, 255, 255, .72);
+  --site-text: #000000;
+  --site-text-2: #646464;
+  --site-text-3: #9a9a9a;
+  --site-accent: #64b563;
+  --site-accent-bar: #68c18c;
+  --site-accent-strong: #2e7d32;
+  --site-accent-soft: #eef7ee;
+  --site-divider: #d6ecd9;
+  --site-surface: #ffffff;
+  --site-banner: linear-gradient(100deg, #0f3b57 0%, #17648a 34%, #2f6e3f 62%, #1f4a2a 100%);
+  --site-banner-shade: linear-gradient(90deg, rgba(0, 0, 0, .3) 0%, rgba(0, 0, 0, 0) 60%);
+  --site-logo-mark: #2fa84f;
+  --font-site: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+
+  --adm-primary: #1890ff;
+  --adm-primary-hover: #40a9ff;
+  --adm-bg: #f0f2f5;
+  --adm-surface: #ffffff;
+  --adm-sider: #151a22;
+  --adm-sider-text: #a6a9ad;
+  --adm-sider-text-hover: #ffffff;
+  --adm-sider-active-bg: #14262d;
+  --adm-sider-active-text: #10958a;
+  --adm-header-border: #e4e4e4;
+  --adm-text: #262626;
+  --adm-text-2: #595959;
+  --adm-text-3: #8c8c8c;
+  --adm-placeholder: #bfbfbf;
+  --adm-border: #d9d9d9;
+  --adm-split: #f0f0f0;
+  --adm-th-bg: #fafafa;
+  --adm-error: #ff4d4f;
+  --adm-warning: #faad14;
+  --adm-success: #52c41a;
+  --adm-tag-draft-bg: #fafafa;
+  --adm-tag-draft-border: #d9d9d9;
+  --adm-tag-draft-text: #595959;
+  --adm-tag-pub-bg: #f6ffed;
+  --adm-tag-pub-border: #b7eb8f;
+  --adm-tag-pub-text: #389e0d;
+  --adm-tag-off-bg: #fff7e6;
+  --adm-tag-off-border: #ffd591;
+  --adm-tag-off-text: #d46b08;
+  --adm-shadow: 0 3px 6px -4px rgba(0, 0, 0, .12), 0 6px 16px 0 rgba(0, 0, 0, .08), 0 9px 28px 8px rgba(0, 0, 0, .05);
+  --adm-mask: rgba(0, 0, 0, .45);
+  --adm-focus-shadow: 0 0 0 2px rgba(24, 144, 255, .2);
+  --font-adm: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+
+  --focus-ring: #1677ff;
+  --focus-ring-site: #2e7d32;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; overflow-x: hidden; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.site :focus-visible { outline-color: var(--focus-ring-site); }
+
+
+
+/* ============ 官网 ============ */
+.site { font-family: var(--font-site); color: var(--site-text); background: var(--site-surface); font-size: 16px; line-height: 1.5; }
+.site-nav { position: relative; z-index: 10; height: 56px; background: var(--site-nav-bg); color: var(--site-on-dark); display: flex; align-items: center; padding: 0 16px; }
+.site-logo { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--site-on-dark); font-size: 13px; line-height: 16px; letter-spacing: .18em; flex: 0 0 auto; }
+.site-logo i { display: block; width: 22px; height: 28px; background: var(--site-logo-mark); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.site-nav__menu { list-style: none; margin: 0 auto; padding: 0; display: flex; gap: 32px; }
+.site-nav__menu a { display: block; text-decoration: none; font-size: 14px; font-weight: 500; line-height: 20px; white-space: nowrap; color: var(--site-on-dark); }
+.site-nav__menu a[href]:hover { color: var(--site-on-dark-2); }
+.site-nav__menu > li { position: relative; padding: 18px 0; }
+.site-nav__menu a.is-on, .site-nav__menu a.is-on[href]:hover { color: var(--site-accent-bar); }
+.site-nav__menu .drop { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); min-width: 128px; padding: 6px 0; border-radius: 4px; background: var(--site-surface); box-shadow: var(--adm-shadow); opacity: 0; pointer-events: none; transition: opacity .15s ease; }
+.site-nav__menu > li:hover .drop, .site-nav__menu > li:focus-within .drop { opacity: 1; pointer-events: auto; }
+.site-nav__menu .drop a { padding: 9px 20px; color: var(--site-text); font-weight: 400; text-align: center; }
+.site-nav__menu .drop a[href]:hover { color: var(--site-accent-strong); background: var(--site-accent-soft); }
+@media (prefers-reduced-motion: reduce) { .site-nav__menu .drop { transition: none; } }
+.site-nav__spacer { flex: 0 0 90px; }
+.site-nav__more { display: none; margin-left: auto; }
+.site-nav__more summary { list-style: none; cursor: pointer; padding: 8px 12px; border-radius: 8px; background: var(--site-on-dark); color: var(--site-nav-bg); font-size: 14px; }
+.site-nav__more summary::-webkit-details-marker { display: none; }
+.site-nav__more ul { position: absolute; left: 0; right: 0; top: 56px; list-style: none; margin: 0; padding: 4px 8px 12px; background: var(--site-nav-bg); }
+.site-nav__more li { border-bottom: 1px solid var(--site-line-dark); }
+.site-nav__more a { display: block; padding: 10px 12px; color: var(--site-on-dark); text-decoration: none; font-size: 16px; }
+.site-nav__more a.is-on { color: var(--site-accent-bar); }
+@media (max-width: 1100px) { .site-nav__menu, .site-nav__spacer { display: none; } .site-nav__more { display: block; } }
+
+.site-banner { position: relative; height: 300px; background: var(--site-banner); }
+.site-banner::after { content: ""; position: absolute; inset: 0; background: var(--site-banner-shade); }
+.site-banner h1 { position: absolute; z-index: 1; left: 15%; top: 50%; transform: translateY(-50%); margin: 0; font-size: 36px; line-height: 40px; font-weight: 400; color: var(--site-on-dark); }
+.site-banner small { position: absolute; z-index: 1; right: 16px; bottom: 10px; font-size: 12px; color: var(--site-on-dark-2); }
+
+.site-tabs { border-bottom: 1px solid var(--site-divider); }
+.site-tabs__inner { max-width: 1024px; margin: 0 auto; padding: 0 24px; display: flex; gap: 48px; }
+.site-tabs a { position: relative; display: block; padding: 20px 0 18px; text-decoration: none; color: var(--site-text-2); white-space: nowrap; }
+.site-tabs a:hover { color: var(--site-text); }
+.site-tabs a[aria-current] { color: var(--site-text); font-weight: 500; }
+.site-tabs a[aria-current]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 3px; background: var(--site-accent); }
+
+.site-container { max-width: 1024px; margin: 0 auto; padding: 24px 24px 96px; }
+.site-list { list-style: none; margin: 0; padding: 0; }
+.site-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--site-divider); }
+.site-row--plain { grid-template-columns: minmax(0, 1fr) auto; }
+.site-year { color: var(--site-accent-strong); font-size: 20px; font-weight: 500; line-height: 28px; white-space: nowrap; }
+.site-year small { font-size: 14px; font-weight: 400; margin-left: 2px; }
+.site-row__title { margin: 0; font-size: 16px; line-height: 24px; font-weight: 400; overflow-wrap: anywhere; min-width: 0; }
+.site-acts { display: flex; gap: 20px; white-space: nowrap; font-size: 14px; color: var(--site-text-2); }
+.site-acts span { display: inline-flex; align-items: center; gap: 6px; }
+.site-acts svg { width: 16px; height: 16px; }
+.site-group__year { margin: 32px 0 0; font-size: 20px; font-weight: 500; line-height: 28px; color: var(--site-accent-strong); }
+.site-group:first-child .site-group__year { margin-top: 20px; }
+
+.site-parties { list-style: none; margin: 36px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
+.site-party__logo { aspect-ratio: 3 / 2; border: 1px solid var(--site-divider); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.site-party__name { margin: 12px 0 0; text-align: center; font-size: 15px; overflow-wrap: anywhere; }
+.demo-logo { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; background: var(--site-accent-soft); color: var(--site-accent-strong); }
+.demo-logo b { font-size: 22px; letter-spacing: .08em; }
+.demo-logo small { font-size: 11px; color: var(--site-text-2); letter-spacing: .1em; }
+
+.section-title { position: relative; z-index: 0; display: inline-block; margin: 28px 0 24px; font-size: 28px; line-height: 36px; font-weight: 400; }
+.section-title::before { content: ""; position: absolute; z-index: -1; left: calc(100% - 32px); bottom: 0; width: 48px; height: 14px; background: var(--site-accent-bar); }
+.section-title--next { margin-top: 48px; }
+.site-intro p { margin: 0 0 16px; line-height: 1.9; overflow-wrap: anywhere; }
+.site-photos { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.photo-ph { aspect-ratio: 4 / 3; background: var(--site-banner); color: var(--site-on-dark); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.photo-ph--sm { width: 128px; font-size: 12px; }
+.site-muted { color: var(--site-text-2); font-size: 15px; padding: 20px 0; margin: 0; }
+.site-state { text-align: center; padding: 88px 0 72px; color: var(--site-text-2); }
+.site-state svg { width: 56px; height: 56px; color: var(--site-accent); }
+.site-state p { margin: 16px 0 0; }
+.site-btn { display: inline-flex; align-items: center; justify-content: center; margin-top: 24px; height: 40px; padding: 0 20px; border: 1px solid var(--site-accent); color: var(--site-accent-strong); font-size: 15px; text-decoration: none; }
+
+.site-footer { background: var(--site-footer-bg); color: var(--site-on-dark); font-size: 14px; }
+.site-footer__top { max-width: 1248px; margin: 0 auto; padding: 56px 24px 40px; display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.site-footer__top .site-logo { font-size: 18px; line-height: 22px; letter-spacing: .3em; }
+.site-footer h2 { margin: 0 0 14px; font-size: 16px; font-weight: 400; }
+.site-footer p { margin: 0 0 10px; line-height: 22px; }
+.site-footer__bottom { border-top: 1px solid var(--site-line-dark); }
+.site-footer__bottom p { max-width: 1248px; margin: 0 auto; padding: 22px 24px; }
+
+@media (max-width: 767px) {
+  .site-banner { height: 160px; }
+  .site-banner h1 { left: 20px; font-size: 26px; }
+  .site-tabs__inner { padding: 0 8px; gap: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .site-tabs a { text-align: center; font-size: 15px; padding: 16px 0 14px; }
+  .site-tabs a[aria-current]::after { left: 18%; right: 18%; }
+  .site-container { padding: 8px 20px 64px; }
+  .site-row { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 18px 0; }
+  .site-parties { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; margin-top: 24px; }
+  .section-title { font-size: 22px; }
+  .site-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+}
+
+/* 可点击切换：单选框 + label + CSS，不依赖脚本和 # 锚点 */
+body.switch { background: var(--site-surface); }
+.sw { position: absolute; top: 0; left: 0; width: 1px; height: 1px; margin: 0; opacity: 0; pointer-events: none; }
+.screen { display: none; }
+label.go { display: contents; cursor: pointer; }
+label.go > a { cursor: pointer; }
+#P-s-annual:checked ~ #s-annual, #P-s-audit:checked ~ #s-audit, #P-s-parties:checked ~ #s-parties, #P-s-projects:checked ~ #s-projects, #P-s-projects-nophoto:checked ~ #s-projects-nophoto, #P-s-projects-nointro:checked ~ #s-projects-nointro, #P-s-projects-noreport:checked ~ #s-projects-noreport, #P-s-empty:checked ~ #s-empty, #P-s-error:checked ~ #s-error { display: block; }
+</style>
+<link rel="stylesheet" href="../../_shared/demo.css">
+</head>
+<body class="switch">
+<input class="sw" type="radio" name="P" id="P-s-annual" checked aria-label="年度报告（默认首页）"><input class="sw" type="radio" name="P" id="P-s-audit" aria-label="审计报告（同一年度多份）"><input class="sw" type="radio" name="P" id="P-s-parties" aria-label="重要关联方"><input class="sw" type="radio" name="P" id="P-s-projects" aria-label="项目成果"><input class="sw" type="radio" name="P" id="P-s-projects-nophoto" aria-label="项目成果 · 项目介绍没有照片"><input class="sw" type="radio" name="P" id="P-s-projects-nointro" aria-label="项目成果 · 项目介绍未发布，只有阶段报告"><input class="sw" type="radio" name="P" id="P-s-projects-noreport" aria-label="项目成果 · 暂无阶段报告"><input class="sw" type="radio" name="P" id="P-s-empty" aria-label="子栏目空状态（以年度报告为例）"><input class="sw" type="radio" name="P" id="P-s-error" aria-label="内容加载失败">
+<section class="screen" id="s-annual" aria-label="年度报告（默认首页）"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a aria-current="page">年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a>项目成果</a></label></div></nav><main class="site-container"><ul class="site-list"><li class="site-row"><span class="site-year">2024<small>年度</small></span><h2 class="site-row__title">示例基金会2024年度工作报告</h2><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row"><span class="site-year">2023<small>年度</small></span><h2 class="site-row__title">示例基金会2023年度工作报告</h2><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row"><span class="site-year">2022<small>年度</small></span><h2 class="site-row__title">示例基金会2022年度工作报告</h2><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li></ul></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-audit" aria-label="审计报告（同一年度多份）"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a>年度报告</a></label><label class="go" for="P-s-audit"><a aria-current="page">审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a>项目成果</a></label></div></nav><main class="site-container"><section class="site-group"><h2 class="site-group__year">2024 年</h2><ul class="site-list"><li class="site-row site-row--plain"><h3 class="site-row__title">示例基金会2024年度财务审计报告</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row site-row--plain"><h3 class="site-row__title">示例基金会2024年度专项审计报告</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row site-row--plain"><h3 class="site-row__title">示例基金会第二届理事会换届审计报告</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li></ul></section><section class="site-group"><h2 class="site-group__year">2023 年</h2><ul class="site-list"><li class="site-row site-row--plain"><h3 class="site-row__title">示例基金会2023年度财务审计报告</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li></ul></section></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-parties" aria-label="重要关联方"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a>年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a aria-current="page">重要关联方</a></label><label class="go" for="P-s-projects"><a>项目成果</a></label></div></nav><main class="site-container"><ul class="site-parties"><li><div class="site-party__logo"><div class="demo-logo" role="img" aria-label="示例公益基金会 示例 logo"><b>公益</b><small>示例 LOGO</small></div></div><p class="site-party__name">示例公益基金会</p></li><li><div class="site-party__logo"><div class="demo-logo" role="img" aria-label="示例农业集团 示例 logo"><b>农业</b><small>示例 LOGO</small></div></div><p class="site-party__name">示例农业集团</p></li><li><div class="site-party__logo"><div class="demo-logo" role="img" aria-label="示例生态研究院 示例 logo"><b>生态</b><small>示例 LOGO</small></div></div><p class="site-party__name">示例生态研究院</p></li><li><div class="site-party__logo"><div class="demo-logo" role="img" aria-label="示例自然保护协会 示例 logo"><b>自然</b><small>示例 LOGO</small></div></div><p class="site-party__name">示例自然保护协会</p></li></ul></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-projects" aria-label="项目成果"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a>年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a aria-current="page">项目成果</a></label></div></nav><main class="site-container"><h2 class="section-title">项目介绍</h2><div class="site-intro"><p>示例项目以一条山区溪流为对象，围绕水质改善、河岸植被恢复和水生生物栖息地营造开展修复工作，并邀请周边社区参与日常巡护。</p><p>项目按年度形成阶段报告，记录修复措施、监测数据和下一阶段计划。本段为原型演示文字。</p></div><ul class="site-photos"><li><div class="photo-ph">项目照片 1（示例）</div></li><li><div class="photo-ph">项目照片 2（示例）</div></li><li><div class="photo-ph">项目照片 3（示例）</div></li></ul><h2 class="section-title section-title--next">阶段报告</h2><ul class="site-list"><li class="site-row site-row--plain"><h3 class="site-row__title">第一阶段报告（2023年）</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row site-row--plain"><h3 class="site-row__title">第二阶段报告（2024年）</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li></ul></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-projects-nophoto" aria-label="项目成果 · 项目介绍没有照片"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a>年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a aria-current="page">项目成果</a></label></div></nav><main class="site-container"><h2 class="section-title">项目介绍</h2><div class="site-intro"><p>示例项目以一条山区溪流为对象，围绕水质改善、河岸植被恢复和水生生物栖息地营造开展修复工作，并邀请周边社区参与日常巡护。</p><p>项目按年度形成阶段报告，记录修复措施、监测数据和下一阶段计划。本段为原型演示文字。</p></div><h2 class="section-title section-title--next">阶段报告</h2><ul class="site-list"><li class="site-row site-row--plain"><h3 class="site-row__title">第一阶段报告（2023年）</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row site-row--plain"><h3 class="site-row__title">第二阶段报告（2024年）</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li></ul></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-projects-nointro" aria-label="项目成果 · 项目介绍未发布，只有阶段报告"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a>年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a aria-current="page">项目成果</a></label></div></nav><main class="site-container"><h2 class="section-title">阶段报告</h2><ul class="site-list"><li class="site-row site-row--plain"><h3 class="site-row__title">第一阶段报告（2023年）</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li><li class="site-row site-row--plain"><h3 class="site-row__title">第二阶段报告（2024年）</h3><div class="site-acts"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>在线查看</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>下载</span></div></li></ul></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-projects-noreport" aria-label="项目成果 · 暂无阶段报告"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a>年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a aria-current="page">项目成果</a></label></div></nav><main class="site-container"><h2 class="section-title">项目介绍</h2><div class="site-intro"><p>示例项目以一条山区溪流为对象，围绕水质改善、河岸植被恢复和水生生物栖息地营造开展修复工作，并邀请周边社区参与日常巡护。</p><p>项目按年度形成阶段报告，记录修复措施、监测数据和下一阶段计划。本段为原型演示文字。</p></div><ul class="site-photos"><li><div class="photo-ph">项目照片 1（示例）</div></li><li><div class="photo-ph">项目照片 2（示例）</div></li><li><div class="photo-ph">项目照片 3（示例）</div></li></ul><h2 class="section-title section-title--next">阶段报告</h2><p class="site-muted">暂无阶段报告</p></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-empty" aria-label="子栏目空状态（以年度报告为例）"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a aria-current="page">年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a>项目成果</a></label></div></nav><main class="site-container"><div class="site-state"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 38C10 20 22 10 40 9c0 19-10 29-27 29"/><path d="M10 38c6-9 13-15 21-20"/></svg><p>暂无公开内容</p></div></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section><section class="screen" id="s-error" aria-label="内容加载失败"><div class="site"><nav class="site-nav" aria-label="官网主导航"><span class="site-logo"><i></i>江河荟<br>浙江翠</span><ul class="site-nav__menu" data-menu="site"></ul><span class="site-nav__spacer"></span><details class="site-nav__more"><summary>菜单</summary><ul data-menu="site" data-menu-flat></ul></details></nav><header class="site-banner"><h1>信息公开</h1><small>头图：官网首页轮播第 4 张（千岛湖航拍），原型以色块示意</small></header><nav class="site-tabs" aria-label="信息公开子栏目"><div class="site-tabs__inner"><label class="go" for="P-s-annual"><a aria-current="page">年度报告</a></label><label class="go" for="P-s-audit"><a>审计报告</a></label><label class="go" for="P-s-parties"><a>重要关联方</a></label><label class="go" for="P-s-projects"><a>项目成果</a></label></div></nav><main class="site-container"><div class="site-state" role="alert"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 38C10 20 22 10 40 9c0 19-10 29-27 29"/><path d="M10 38c6-9 13-15 21-20"/></svg><p>内容加载失败，请稍后重试</p><label class="go" for="P-s-annual"><a class="site-btn">重新加载</a></label></div></main><footer class="site-footer"><div class="site-footer__top"><span class="site-logo"><i></i>江河荟 浙江翠</span><div><h2>联系我们</h2><p>邮件: ecoznc@163.com</p><p>地址: 浙江省杭州市萧山区义桥镇寺坞岭<br>浙江省杭州市淳安县千岛湖羡山半岛</p></div></div><div class="site-footer__bottom"><p>© 2023 萧山区民生通惠乡村振兴服务中心　浙ICP备2023015500号（页脚二维码等沿用官网现有内容）</p></div></footer></div></section>
+<details class="demo"><summary>演示工具 · <b>面客端 · 信息公开</b></summary><nav aria-label="演示目录"><h2>页面与状态</h2><label for="P-s-annual">年度报告（默认首页）</label><label for="P-s-audit">审计报告（同一年度多份）</label><label for="P-s-parties">重要关联方</label><label for="P-s-projects">项目成果</label><label for="P-s-projects-nophoto">项目成果 · 项目介绍没有照片</label><label for="P-s-projects-nointro">项目成果 · 项目介绍未发布，只有阶段报告</label><label for="P-s-projects-noreport">项目成果 · 暂无阶段报告</label><label for="P-s-empty">子栏目空状态（以年度报告为例）</label><label for="P-s-error">内容加载失败</label><p>页签、面包屑、新增、编辑、删除、取消等可点击切换；数据为演示数据，按钮不会真正保存。依据：信息公开 PRD 2026-10-22（项目成果描述与照片分开维护版）。</p></nav></details>
+<script src="../../_shared/navigation.js"></script>
+</body>
+</html>
