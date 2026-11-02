@@ -9,6 +9,8 @@
 | 信息公开 | [prd/info-disclosure/](prd/info-disclosure/) | [信息公开.html](prototype/面客端/信息公开/信息公开.html) | [信息公开.html](prototype/企业端/信息公开/信息公开.html) |
 | 关于我们 | [prd/about-us/](prd/about-us/) | [关于我们.html](prototype/面客端/关于我们/关于我们.html) | [关于我们.html](prototype/企业端/关于我们/关于我们.html) |
 
+关于我们的视觉规格与人员照片展示/建议上传尺寸见 [design/about-us/UI.md](design/about-us/UI.md)。
+
 ## PRD 分册
 
 每个模块的 PRD 按固定册号分册，放在同一目录下，册与册之间用相对链接互相引用：
