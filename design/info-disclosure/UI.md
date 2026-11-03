@@ -62,3 +62,23 @@
 python3 _shared/export.py 面客端/信息公开/信息公开.html /tmp/luna-info-disclosure-site-ui.html
 python3 _shared/export.py 企业端/信息公开/信息公开.html /tmp/luna-info-disclosure-admin-ui.html
 ```
+
+## 官网英文界面文字
+
+2026-11-03 按 PRD（官网中英文切换）补充。切换入口沿用官网现有的“中 / EN”位置（导航右侧）；运营管理系统保持中文。下表只列界面文字，录入内容（报告标题、关联方名称和 logo、项目成果描述、项目照片标题、阶段报告标题、PDF 文件名）不翻译，英文界面下按中文原样展示。
+
+| 中文 | 英文 |
+| --- | --- |
+| 信息公开（一级导航、栏目标题） | Information Disclosure |
+| 年度报告 / 审计报告 / 重要关联方 / 项目成果 | Annual Reports / Audit Reports / Key Related Parties / Project Outcomes |
+| 项目介绍 / 项目照片 / 阶段报告 | Project Overview / Project Photos / Stage Reports |
+| 在线查看 / 下载 | View online / Download |
+| 2024 年度、2024 年（年份单位） | 2024（只显示年份） |
+| 暂无阶段报告 | No stage reports yet |
+| 暂无公开内容 | No published content yet |
+| 内容加载失败，请稍后重试 / 重新加载 | Failed to load content. Please try again later. / Reload |
+| 菜单（手机导航按钮） | Menu |
+| 联系我们 / 邮件 / 地址 | Contact Us / Email / Address |
+
+其他一级导航沿用官网现有英文名：Xianshan Botanic Garden、Hangzhou Duoyang Dao、Shanshan Shuihezi、Laoshan Experimental Island、Biorepository、News Center、The Dynamics、About Us（2026-10-19 在 www.ecoznc.com 实测）。“关于我们”下拉的 Organization、Articles of Association、Policies、People 为本次补充的暂定译名，以“关于我们”模块确认的为准。英文导航较长时，桌面按官网做法折成两行；手机端子栏目页签允许换行。
+

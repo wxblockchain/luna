@@ -31,6 +31,8 @@ def link(end, item, module):
     cls = (ITEM_CLASS[end] + (' is-on' if on else '')).strip()
     start = '<a' + (' class="%s"' % cls if cls else '') + (' aria-current="page"' if on else '')
     text = html.escape(item['label'])
+    if item.get('en') and module.get('i18n'):
+        text = '<span class="zh">%s</span><span class="en">%s</span>' % (text, html.escape(item['en']))
     screen = module['routes'].get(key) if end == module['end'] else None
     if screen:
         return '<label class="go" for="%s-%s">%s>%s</a></label>' % (module['group'], screen, start, text)
@@ -50,6 +52,7 @@ def render(end, flat, module):
 def main(source, output):
     page = open(source, encoding='utf-8').read()
     module = json.loads(read_call(os.path.join(os.path.dirname(source), 'route.js'), 'registerModule'))
+    module['i18n'] = bool(re.search(r'<body[^>]*\sdata-i18n', page))
 
     def inline_css(m):
         path = os.path.join(os.path.dirname(source), m.group(1))

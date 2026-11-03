@@ -53,6 +53,9 @@
     var cls = ITEM_CLASS[end] + (on ? ' is-on' : '');
     var open = '<a' + (cls.trim() ? ' class="' + cls.trim() + '"' : '') + (on ? ' aria-current="page"' : '');
     var text = esc(item.label);
+    if (item.en && document.body.hasAttribute('data-i18n')) {
+      text = '<span class="zh">' + text + '</span><span class="en">' + esc(item.en) + '</span>';
+    }
     if (r && r.module === current) {
       return '<label class="go" for="' + current.group + '-' + r.screen + '">' + open + '>' + text + '</a></label>';
     }
